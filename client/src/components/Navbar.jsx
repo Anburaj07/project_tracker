@@ -1,5 +1,4 @@
 import React from "react";
-
 import notification from "../images/notification.png";
 import dp from "../images/dp.png";
 import search from "../images/search.png";
@@ -11,7 +10,7 @@ const Navbar = () => {
         <h1 className="text-xl font-medium">Project M</h1>
       </div>
       <div className="w-[90%] flex  justify-between pl-3 pr-3 mb-3">
-        <div className="flex items-center bg-[#DBDBDB] w-[25%] rounded p-2">
+        <div className="flex items-center bg-[#DBDBDB] w-[25%] rounded-md p-2">
           <div>
             <img src={search} alt="" className="w-[100%]" />
           </div>
