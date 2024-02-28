@@ -5,7 +5,7 @@ import finished from "../../images/finished.png";
 import unfinished from "../../images/unfinished.png";
 import notStarted from "../../images/notStarted.png";
 
-const ProjectStates = () => {
+const ProjectStates = ({ Inprogress, Finished, Unfinished, Nonstarted }) => {
   return (
     <PROJECTSTATES className="flex justify-between">
       <div>
@@ -13,28 +13,28 @@ const ProjectStates = () => {
           <p>Inprogress</p>
           <img src={inProgress} alt="" />
         </div>
-        <h1 className="text-2xl font-semibold">110</h1>
+        <h1 className="text-2xl font-semibold">{Inprogress}</h1>
       </div>
       <div>
         <div>
           <p>Finished</p>
           <img src={finished} alt="" />
         </div>
-        <h1 className="text-2xl font-semibold">110</h1>
+        <h1 className="text-2xl font-semibold">{Finished}</h1>
       </div>
       <div>
         <div>
           <p>Unfinished</p>
           <img src={unfinished} alt="" />
         </div>
-        <h1 className="text-2xl font-semibold">110</h1>
+        <h1 className="text-2xl font-semibold">{Unfinished}</h1>
       </div>
       <div>
         <div>
           <p>NotStarted</p>
           <img src={notStarted} alt="" />
         </div>
-        <h1 className="text-2xl font-semibold">110</h1>
+        <h1 className="text-2xl font-semibold">{Nonstarted}</h1>
       </div>
     </PROJECTSTATES>
   );
