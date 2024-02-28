@@ -35,7 +35,7 @@ const StatusHeader = ({ status, handleChange }) => {
           Finished
         </button>
         <button
-          className={`${status === "Unfinished" && "text-[#5030E5]"}`}
+          className={`font-semibold ${status === "Unfinished" && "text-[#5030E5] underline"}`}
           onClick={() => handleChange("Unfinished")}
         >
           Unfinished
