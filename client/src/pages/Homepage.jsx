@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
-import Projects from "../components/Projects";
+import Projects from "../components/Projects/Projects";
 
 const Homepage = () => {
   return (

@@ -12,16 +12,16 @@ const Sidebar = () => {
 
     console.log(state)
   return (
-    <SIDEBAR className="w-[10%] border-r border-gray-400 h-screen">
-      <div className="flex p-5" onClick={()=>handleClick("Projects")}>
+    <SIDEBAR className="w-[10%] border-r border-gray-400  overflow-y-auto sticky top-0">
+      <div className={`flex p-5 ${state === 'Projects' ? 'bg-[#E7F3FF]' : ''} ` } onClick={()=>handleClick("Projects")}>
         <img src={projects} alt="" />
         <h2 className={`text-lg ${state === 'Projects' ? 'text-[#5030E5]' : ''}`}>Projects</h2>
       </div>
-      <div className="flex p-5" onClick={()=>handleClick("Tasks")}>
+      <div className={`flex p-5 ${state === 'Tasks' ? 'bg-[#E7F3FF]' : ''} ` } onClick={()=>handleClick("Tasks")}>
         <img  src={tasks} alt=""  />
         <h2 className={`text-lg ${state === 'Tasks' ? 'text-[#5030E5]' : ''}`}>Tasks</h2>
       </div>
-      <div className="flex p-5" onClick={()=>handleClick("Tickets")}>
+      <div className={`flex p-5 ${state === 'Tickets' ? 'bg-[#E7F3FF]' : ''} ` } onClick={()=>handleClick("Tickets")}>
         <img src={tickets} alt="" />
         <h2 className={`text-lg ${state === 'Tickets' ? 'text-[#5030E5]' : ''}`}>Tickets</h2>
       </div>
