@@ -1,6 +1,6 @@
 const express = require("express");
-const { ProjectModel } = require("../models/project.model");
 const projectRouter = express.Router();
+const { ProjectModel } = require("../models/project.model");
 
 projectRouter.get("/", async (req, res) => {
   const query = req.query;

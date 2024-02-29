@@ -7,13 +7,15 @@ app.use(express.json());
 const cors = require("cors");
 const { connection } = require("./db");
 const { projectRouter } = require("./routes/project.route");
+const { taskRouter } = require("./routes/task.route");
 app.use(
   cors({
     origin: "*",
   })
 );
 
-app.use("/projects",projectRouter)
+app.use("/projects", projectRouter);
+app.use("/tasks", taskRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({ msg: "Project Tracker Base Point" });
