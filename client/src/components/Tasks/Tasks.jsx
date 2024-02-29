@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import TaskFilters from "./TaskFilters";
 import TasksTable from "./TasksTable";
+import { useGetTasksQuery } from "../../redux/slices/taskApi";
 
 const Tasks = () => {
+  const { data: taskList, isLoading, isSuccess } = useGetTasksQuery();
   return (
     <TASKS className="pl-4 pr-6">
       <div className="flex justify-between p-1">
@@ -12,8 +14,13 @@ const Tasks = () => {
           + Add Task
         </button>
       </div>
-      <TaskFilters/>
-      <TasksTable/>
+      {isLoading && <h1>Loading...</h1>}
+      {isSuccess && (
+        <>
+          <TaskFilters />
+          <TasksTable data={taskList}/>
+        </>
+      )}
     </TASKS>
   );
 };
