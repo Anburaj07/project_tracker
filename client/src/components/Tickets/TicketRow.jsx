@@ -6,7 +6,7 @@ const TicketRow = ({ ticket_id, subject, assigned, date, status }) => {
       id="row"
       className="border-y-2 border-[#DBDBDB]-500 p-4 flex justify-between text-left"
     >
-      <p className="w-[15%] text-[#FF0000] font-semibold">{ticket_id}</p>
+      <p className="w-[15%] text-[#FF0000] font-semibold">#Tc-{ticket_id}</p>
       <p className="w-[15%]">{subject}</p>
       <p className="w-[15%] font-semibold">{assigned}</p>
       <p className="w-[15%]">{date}</p>
