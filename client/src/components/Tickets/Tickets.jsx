@@ -1,16 +1,26 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
+import TicketFilters from "./TicketFilters";
+import TicketsTable from "./TicketsTable";
 
 const Tickets = () => {
   return (
-    <div>
-      <div className="flex justify-between pl-2 pr-2 p-1">
+    <TICKETS className="pl-4 pr-6">
+      <div className="flex justify-between p-1">
         <h1 className="text-2xl font-semibold">Tickets</h1>
         <button className=" bg-[#5030E5] rounded text-white p-1.5">
           + Add Ticket
         </button>
       </div>
-    </div>
-  )
-}
+      <TicketFilters />
+      <TicketsTable/>
+    </TICKETS>
+  );
+};
 
-export default Tickets
+export default Tickets;
+
+const TICKETS = styled.div`
+  margin-top: 10px;
+  margin-bottom: 40px;
+`;
