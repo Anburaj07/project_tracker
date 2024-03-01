@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import cancel from "../../images/cancel.png";
 import { useAddTaskMutation } from "../../redux/slices/taskApi";
 
 const AddTaskModal = ({ isOpen, onClose }) => {
@@ -32,10 +33,8 @@ const AddTaskModal = ({ isOpen, onClose }) => {
       <div className="modal mt-8">
         <div className="modal-content text-[#474f5e] shadow-md w-[40%] p-4 m-auto bg-[#ffffff] rounded-md">
           <div className="flex justify-between w-[90%] mb-4">
-            <h2 className="text-2xl font-bold">Add Task</h2>
-            <span className="close text-2xl font-semi-bold" onClick={onClose}>
-              &times;
-            </span>
+            <h2 className="text-2xl font-semibold">Add Task</h2>
+            <img src={cancel} className="cursor-pointer text-2xl font-medium" alt="Cancel" onClick={onClose} />
           </div>
           <FORM onSubmit={handleSubmit} className="flex flex-col">
             {/* Form fields */}

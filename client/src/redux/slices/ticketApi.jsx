@@ -46,4 +46,5 @@ export const {
   useGetTicketsByIdQuery,
   useAddTicketMutation,
   useEditTicketMutation,
+  useDeleteTicketMutation
 } = ticketApi;
