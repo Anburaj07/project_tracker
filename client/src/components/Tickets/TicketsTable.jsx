@@ -18,7 +18,7 @@ const TicketsTable = ({ data }) => {
       </div>
       <div>
         {data.map((el) => (
-          <TicketRow {...el} />
+          <TicketRow key={el._id} {...el} />
         ))}
       </div>
     </TICKETSTABLE>

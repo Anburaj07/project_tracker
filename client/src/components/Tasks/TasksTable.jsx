@@ -16,7 +16,7 @@ const TasksTable = ({ data }) => {
       </div>
       <div>
         {data.map((el) => (
-          <TableRow {...el} />
+          <TableRow key={el._id} {...el} />
         ))}
       </div>
     </TASKSTABLE>

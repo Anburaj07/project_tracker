@@ -4,6 +4,7 @@ export const projectApi = createApi({
   reducerPath: "projectApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8080/projects",
+    // https://project-tracker-tpm7.onrender.com/
   }),
   tagTypes: ["projects"],
   endpoints: (builder) => ({
