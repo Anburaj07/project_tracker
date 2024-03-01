@@ -51,7 +51,7 @@ const TicketModal = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isEditing) {
-      editTicket(ticket);
+      editTicket({id,...ticket});
       alert("Task Updated Successfully!");
     } else {
       addTicket(ticket);
