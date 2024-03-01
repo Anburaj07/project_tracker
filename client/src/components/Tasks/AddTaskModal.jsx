@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useAddTaskMutation } from "../../redux/slices/taskApi";
 
 const AddTaskModal = ({ isOpen, onClose }) => {
+  // state variables for form fields
   const [taskName, setTaskName] = useState("");
   const [leadName, setLeadName] = useState("");
-  // Other state variables for form fields
+
+  const [addTask] = useAddTaskMutation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Submit the form data, for example, by posting it to the server
+    let task = {
+      task_name: taskName,
+      date: new Date().toLocaleDateString("en-GB"),
+      status: "Assigned",
+      lead_name: leadName,
+    };
+    addTask(task);
+    alert("Task Added Successfully!");
+
     // Reset form fields
     setTaskName("");
     setLeadName("");
@@ -45,9 +57,19 @@ const AddTaskModal = ({ isOpen, onClose }) => {
                 placeholder="Lead Name"
               />
             </div>
-            <div className="flex justify-end w-[90%]" > 
-            <button type="submit" className="bg-[#3182ce] text-lg text-[#ffff] p-2 rounded-md mr-2">Add Task</button>
-            <button onClick={onClose} className="bg-[#edf2f7] text-lg p-2 rounded-md">Cancel</button>
+            <div className="flex justify-end w-[90%]">
+              <button
+                type="submit"
+                className="bg-[#3182ce] text-lg text-[#ffff] p-2 rounded-md mr-2"
+              >
+                Add Task
+              </button>
+              <button
+                onClick={onClose}
+                className="bg-[#edf2f7] text-lg p-2 rounded-md"
+              >
+                Cancel
+              </button>
             </div>
           </FORM>
         </div>

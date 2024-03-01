@@ -19,7 +19,7 @@ const Tasks = () => {
   };
 
   return (
-    <TASKS className="pl-4 pr-6">
+    <TASKS className="pl-4 pr-6 min-h-lvh">
       <div className="flex justify-between p-1">
         <h1 className="text-2xl font-semibold">Tasks</h1>
         <button
