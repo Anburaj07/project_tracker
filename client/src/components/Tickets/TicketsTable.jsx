@@ -17,13 +17,9 @@ const TicketsTable = ({ data }) => {
         <h2>ACTIONS</h2>
       </div>
       <div>
-        <TicketRow
-          ticket_id={"#Tc-0002"}
-          subject={"Lorem ipsum dolor sit"}
-          assigned={"Darlene Robertson"}
-          date={"12/03/2021"}
-          status="Inprogress"
-        />
+        {data.map((el) => (
+          <TicketRow {...el} />
+        ))}
       </div>
     </TICKETSTABLE>
   );
@@ -36,7 +32,6 @@ const TICKETSTABLE = styled.div`
     h2 {
       width: 15%;
       text-align: left;
-      border: 1px solid red;
     }
   }
 `;

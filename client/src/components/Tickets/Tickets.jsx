@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import TicketFilters from "./TicketFilters";
 import TicketsTable from "./TicketsTable";
+import { useGetTicketsQuery } from "../../redux/slices/ticketApi";
 
 const Tickets = () => {
+  const { data: ticketList, isLoading, isSuccess } = useGetTicketsQuery();
+
   return (
     <TICKETS className="pl-4 pr-6">
       <div className="flex justify-between p-1">
@@ -12,8 +15,13 @@ const Tickets = () => {
           + Add Ticket
         </button>
       </div>
-      <TicketFilters />
-      <TicketsTable/>
+      {isLoading && <h1>Loading...</h1>}
+      {isSuccess && (
+        <>
+          <TicketFilters />
+          <TicketsTable data={ticketList} />
+        </>
+      )}
     </TICKETS>
   );
 };

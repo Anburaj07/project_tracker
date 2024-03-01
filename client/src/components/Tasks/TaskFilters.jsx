@@ -8,8 +8,8 @@ const TaskFilters = () => {
     <div className="flex gap-3 ">
       <h2>Show</h2>
       <select name="" className="bg-[#E6E6E6] pl-2 pr-2 rounded">
-        <option value="5">5</option>
         <option value="10">10</option>
+        <option value="5">5</option>
         <option value="15">15</option>
       </select>
       <h2>entries</h2>
