@@ -11,7 +11,7 @@ export const taskApi = createApi({
       query: () => "/",
       providesTags: ["tasks"],
     }),
-    getTasksById: builder.query({
+    getTaskById: builder.query({
       query: (id) => `/${id}`,
       providesTags: ["tasks"],
     }),
@@ -36,7 +36,7 @@ export const taskApi = createApi({
 
 export const {
   useGetTasksQuery,
-  useGetTasksByIdQuery,
+  useGetTaskByIdQuery,
   useAddTaskMutation,
   useEditTaskMutation,
 } = taskApi;

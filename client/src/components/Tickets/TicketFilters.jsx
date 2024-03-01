@@ -4,7 +4,7 @@ import search from "../../images/search.png";
 
 const TicketFilters = () => {
   return (
-    <div className="flex justify-between items-center mt-4 w-[98%] ">
+    <div className="flex justify-between items-center mt-4 ">
     <div className="flex gap-3 ">
       <h2>Show</h2>
       <select name="" className="bg-[#E6E6E6] pl-2 pr-2 rounded">

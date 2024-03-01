@@ -62,6 +62,8 @@ const Projects = () => {
 export default Projects;
 
 const PROJECTS = styled.div`
-  margin-top: 10px;
-  margin-bottom: 40px;
+  background-color: #F5F5F5;
+  padding-top: 10px;
+  padding-bottom: 40px;
+  width: 90%;
 `;

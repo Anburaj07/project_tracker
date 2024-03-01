@@ -44,6 +44,8 @@ const Tasks = () => {
 export default Tasks;
 
 const TASKS = styled.div`
-  margin-top: 10px;
-  margin-bottom: 40px;
+  padding-top: 10px;
+  background-color: #f5f5f5;
+  padding-bottom: 40px;
+  width: 90%;
 `;

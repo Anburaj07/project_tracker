@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const TasksTable = ({ data }) => {
   return (
-    <TASKSTABLE className="bg-white w-[98%] mt-4 rounded">
+    <TASKSTABLE className="bg-white mt-4 rounded">
       <div
         className="flex justify-between p-4 text-base font-bold text-center"
         id="header"

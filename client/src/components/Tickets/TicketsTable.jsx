@@ -4,7 +4,7 @@ import TicketRow from "./TicketRow";
 
 const TicketsTable = ({ data }) => {
   return (
-    <TICKETSTABLE className="bg-white w-[98%] mt-4 rounded">
+    <TICKETSTABLE className="bg-white mt-4 rounded">
       <div
         className="flex justify-between p-4 text-base font-bold text-center"
         id="header"

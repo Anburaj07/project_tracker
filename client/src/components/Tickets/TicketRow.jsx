@@ -2,8 +2,10 @@ import React from "react";
 import edit from "../../images/edit.png";
 import deleteIcon from "../../images/delete.png";
 import { useDeleteTicketMutation } from "../../redux/slices/ticketApi";
+import { useNavigate } from "react-router-dom";
 
 const TicketRow = ({ _id, ticket_id, subject, assigned, date, status }) => {
+  const navigate=useNavigate();
   const [deleteTicket] = useDeleteTicketMutation();
   const handleDelete = (id) => {
     alert("Are sure want to delete the ticket?");
@@ -29,7 +31,7 @@ const TicketRow = ({ _id, ticket_id, subject, assigned, date, status }) => {
         </p>
       </div>
       <div className="w-[8%] mr-20 p-1 rounded-md flex justify-around border border-400-[#DBDBDB]">
-        <img className="cursor-pointer" src={edit} alt="" />
+        <img className="cursor-pointer" src={edit} alt="" onClick={()=>navigate(`/projects/edit/${_id}`)}/>
         <img
           className="cursor-pointer"
           src={deleteIcon}
