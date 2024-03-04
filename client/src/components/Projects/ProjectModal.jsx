@@ -10,25 +10,19 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const ProjectModal = () => {
   const [isEditing, setIsEditing] = useState(false);
-
-  const currentDate = new Date();
-  const currentFormattedDate = currentDate.toISOString().slice(0, 10);
-  console.log(currentFormattedDate);
-
   const [project, setProject] = useState({
     title: "",
     description: "",
     percentage: isEditing ? 15 : 0,
-    status: isEditing ? "Inprogress" : "Nonstarted",
+    status: isEditing ? "In progress" : "Not started",
     task: "",
     due_date: "",
-    starting_date: currentFormattedDate,
+    starting_date: new Date().toISOString().slice(0, 10),
     about: "",
   });
   const { id } = useParams();
-  const { data } = useGetProjectByIdQuery(id);
+  const { data} = useGetProjectByIdQuery(id);
   const [editProject] = useEditProjectMutation();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,14 +34,10 @@ const ProjectModal = () => {
     }
   }, [id, data]);
 
-  //addTicket
   const [addProject] = useAddProjectMutation();
 
   const handleChange = (e) => {
-    let { name, value } = e.target;
-    if (name === "task") {
-      value = Number(value);
-    }
+    const { name, value } = e.target;
     setProject({
       ...project,
       [name]: value,
@@ -56,17 +46,16 @@ const ProjectModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isEditing) {
-      editProject({ id, ...project });
-      alert("Project Updated Successfully!");
-    } else {
-      alert("Project Added Successfully!");
-      addProject(project);
-    }
+    const mutation = isEditing ? editProject : addProject;
+    mutation({ id, ...project });
+    const successMessage = isEditing ? "Project updated successfully!" : "Project added successfully!";
+    alert(successMessage);
     setIsEditing(false);
     navigate("/");
   };
-  const { title, task, due_date, description, about } = project;
+
+  const { title, description, task, due_date, about } = project;
+
   return (
     <div className="modal m-auto pb-16 w-[90%] bg-[#f5f5f5] ">
       <div className="modal-content text-[#474f5e] mt-6 shadow-md w-[50%] p-4 m-auto bg-[#ffffff] rounded-md">

@@ -5,56 +5,59 @@ import styled from "styled-components";
 
 const StatusHeader = ({ status, handleChange }) => {
   return (
-    <STATUSHEADER className="flex justify-between mt-8 w-[97%] m-auto">
+    <div className="flex justify-between mt-8 w-[97%] m-auto">
       <div
         className="flex justify-between w-[70%] bg-white p-2 pl-4 pr-4 rounded"
         id="projectStatus"
       >
-        <button
-          className={`font-semibold ${status === "All" && "text-[#5030E5] underline"}`}
+        <StatusButton
+          active={status === "All"}
           onClick={() => handleChange("All")}
         >
           All Projects
-        </button>
-        <button
-          className={`font-semibold ${status === "Nonstarted" && "text-[#5030E5] underline"}`}
+        </StatusButton>
+        <StatusButton
+          active={status === "Nonstarted"}
           onClick={() => handleChange("Nonstarted")}
         >
-          Not Stated
-        </button>
-        <button
-          className={`font-semibold ${status === "Inprogress" && "text-[#5030E5] underline"}`}
+          Not Started
+        </StatusButton>
+        <StatusButton
+          active={status === "Inprogress"}
           onClick={() => handleChange("Inprogress")}
         >
           In Progress
-        </button>
-        <button
-          className={`font-semibold ${status === "Finished" && "text-[#5030E5] underline"}`}
+        </StatusButton>
+        <StatusButton
+          active={status === "Finished"}
           onClick={() => handleChange("Finished")}
         >
           Finished
-        </button>
-        <button
-          className={`font-semibold ${status === "Unfinished" && "text-[#5030E5] underline"}`}
+        </StatusButton>
+        <StatusButton
+          active={status === "Unfinished"}
           onClick={() => handleChange("Unfinished")}
         >
           Unfinished
-        </button>
+        </StatusButton>
       </div>
       <div className="flex items-center bg-[#ffff] rounded-md p-2">
         <div>
           <img src={search} alt="" className="w-[100%]" />
         </div>
-        <input type="text" placeholder="Search Projects" className="pl-2 " />
+        <input type="text" placeholder="Search Projects" className="pl-2" />
       </div>
       <div className="bg-[#ffff] rounded-md p-2 flex items-center">
         <img src={filter} alt="" />
         <h2>Filter</h2>
       </div>
-    </STATUSHEADER>
+    </div>
   );
 };
 
-export default StatusHeader;
+const StatusButton = styled.button`
+  font-weight: 600;
+  ${(props) => props.active && "color: #5030E5; text-decoration: underline;"}
+`;
 
-const STATUSHEADER = styled.div``;
+export default StatusHeader;
