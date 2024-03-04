@@ -31,7 +31,7 @@ const TicketRow = ({ _id, ticket_id, subject, assigned, date, status }) => {
         </p>
       </div>
       <div className="w-[8%] mr-20 p-1 rounded-md flex justify-around border border-400-[#DBDBDB]">
-        <img className="cursor-pointer" src={edit} alt="" onClick={()=>navigate(`/projects/edit/${_id}`)}/>
+        <img className="cursor-pointer" src={edit} alt="" onClick={()=>navigate(`/tickets/edit/${_id}`)}/>
         <img
           className="cursor-pointer"
           src={deleteIcon}

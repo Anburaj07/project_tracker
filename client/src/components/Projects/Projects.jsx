@@ -4,10 +4,11 @@ import ProjectStates from "./ProjectStates";
 import StatusHeader from "./StatusHeader";
 import ProjectList from "./ProjectList";
 import { useGetProjectsQuery } from "../../redux/slices/projectApi";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
   const { data: projectList, isLoading, isSuccess } = useGetProjectsQuery();
-  
+
   let Inprogress = [];
   let Finished = [];
   let Unfinished = [];
@@ -25,7 +26,6 @@ const Projects = () => {
   const handleChange = (value) => {
     setStatus(value);
   };
-  console.log(status);
   let data =
     status === "All"
       ? projectList
@@ -36,25 +36,32 @@ const Projects = () => {
       : status === "Unfinished"
       ? Unfinished
       : Finished;
+
+  const navigate = useNavigate();
   return (
     <PROJECTS>
       <div className="flex justify-between pl-2 pr-2 p-1">
         <h1 className="text-2xl font-semibold">Projects</h1>
-        <button className=" bg-[#5030E5] rounded text-white p-1.5">
+        <button
+          className=" bg-[#5030E5] rounded text-white p-1.5"
+          onClick={() => navigate("/projects/add")}
+        >
           + Add Project
         </button>
       </div>
       {isLoading && <h1>loading....</h1>}
-      {isSuccess && <>
-        <ProjectStates
-        Inprogress={Inprogress.length}
-        Finished={Finished.length}
-        Unfinished={Unfinished.length}
-        Nonstarted={Nonstarted.length}
-      />
-      <StatusHeader status={status} handleChange={handleChange} />
-      <ProjectList data={data} />
-      </>}
+      {isSuccess && (
+        <>
+          <ProjectStates
+            Inprogress={Inprogress.length}
+            Finished={Finished.length}
+            Unfinished={Unfinished.length}
+            Nonstarted={Nonstarted.length}
+          />
+          <StatusHeader status={status} handleChange={handleChange} />
+          <ProjectList data={data} />
+        </>
+      )}
     </PROJECTS>
   );
 };
@@ -62,7 +69,7 @@ const Projects = () => {
 export default Projects;
 
 const PROJECTS = styled.div`
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   padding-top: 10px;
   padding-bottom: 40px;
   width: 90%;

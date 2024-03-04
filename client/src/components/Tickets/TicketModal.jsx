@@ -51,10 +51,10 @@ const TicketModal = () => {
     e.preventDefault();
     if (isEditing) {
       editTicket({ id, ...ticket });
-      alert("Task Updated Successfully!");
+      alert("Ticket Updated Successfully!");
     } else {
       addTicket(ticket);
-      alert("Task Added Successfully!");
+      alert("Ticket Added Successfully!");
     }
     setIsEditing(false);
     navigate("/tickets");
@@ -138,7 +138,6 @@ const TicketModal = () => {
       </div>
     </div>
   );
-  // );
 };
 
 export default TicketModal;

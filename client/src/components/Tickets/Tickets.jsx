@@ -16,7 +16,7 @@ const Tickets = () => {
         <h1 className="text-2xl font-semibold">Tickets</h1>
         <button
           className=" bg-[#5030E5] rounded text-white p-1.5"
-          onClick={() => navigate("/projects/add")}
+          onClick={() => navigate("/tickets/add")}
         >
           + Add Ticket
         </button>
