@@ -81,7 +81,6 @@ export default AddTaskModal;
 
 const FORM = styled.form`
   div {
-    /* width: 70%; */
     margin-bottom: 20px;
     padding: 4px;
     text-align: left;

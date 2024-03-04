@@ -10,7 +10,11 @@ const store = configureStore({
     [ticketApi.reducerPath]: ticketApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(projectApi.middleware, taskApi.middleware,ticketApi.middleware),
+    getDefaultMiddleware().concat(
+      projectApi.middleware,
+      taskApi.middleware,
+      ticketApi.middleware
+    ),
 });
 
 export default store;

@@ -17,7 +17,7 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search for anything..."
-            className="pl-2 bg-[#DBDBDB]"
+            className="pl-2 bg-[#DBDBDB] w-[90%]"
           />
         </div>
         <div className="flex justify-between items-center w-[20%] pl-3 pr-3">
