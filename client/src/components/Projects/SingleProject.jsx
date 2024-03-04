@@ -1,16 +1,20 @@
 import React from "react";
 import more from "../../images/more.png";
 import calender from "../../images/calender.png";
+import { useNavigate } from "react-router-dom";
 
 const SingleProject = ({
+  _id,
   status,
   title,
   description,
   percentage,
   due_date,
 }) => {
+
+  const navigate=useNavigate()
   return (
-    <div className="bg-white  rounded-md p-4 grid gap-y-3">
+    <div className="bg-white  rounded-md p-4 grid gap-y-3" onClick={navigate(`/projects/project/${_id}`)}>
       <div className="flex justify-end items-center">
         <p
           className={`mr-4 pl-4 pr-4 p-1 rounded-md ${

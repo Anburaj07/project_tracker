@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const projectApi = createApi({
   reducerPath: "projectApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8080/projects",
+    baseUrl: "https://project-tracker-tpm7.onrender.com/projects",
     // https://project-tracker-tpm7.onrender.com/
   }),
   tagTypes: ["projects"],
