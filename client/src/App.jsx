@@ -8,8 +8,8 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="flex">
-        <Sidebar/>
-      <AllRoutes />
+        <Sidebar />
+        <AllRoutes />
       </div>
     </div>
   );

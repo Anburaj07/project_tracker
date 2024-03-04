@@ -9,7 +9,6 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 
 const TicketModal = () => {
-
   const [ticket, setTicket] = useState({
     ticket_id: 1003,
     subject: "",
@@ -21,10 +20,10 @@ const TicketModal = () => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
-  const { id } = useParams();  
+  const { id } = useParams();
   const { data } = useGetTicketByIdQuery(id);
   const [editTicket] = useEditTicketMutation();
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,7 +50,7 @@ const TicketModal = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isEditing) {
-      editTicket({id,...ticket});
+      editTicket({ id, ...ticket });
       alert("Task Updated Successfully!");
     } else {
       addTicket(ticket);
@@ -62,9 +61,9 @@ const TicketModal = () => {
   };
   const { subject, assigned, requirements, description } = ticket;
   return (
-    <TICKETMODEL className="modal m-auto mt-4 w-[50%]">
-      <div className="modal-content text-[#474f5e] shadow-md w-[90%] p-4 m-auto bg-[#ffffff] rounded-md">
-        <div className="flex justify-end w-[90%]">
+    <div className="modal m-auto  w-[90%] bg-[#f5f5f5] ">
+      <div className="modal-content text-[#474f5e] mt-6 shadow-md w-[50%] p-4 m-auto bg-[#ffffff] rounded-md">
+        <div className="flex justify-end w-[90%] pt-2">
           <h2 className="text-2xl font-semibold text-[#5030E5] mr-16 mb-2">
             {isEditing ? "Edit" : "New"} Ticket
           </h2>
@@ -99,8 +98,11 @@ const TicketModal = () => {
                 <option value="">Select</option>
                 <option value="Devon Lane">Devon Lane</option>
                 <option value="Floyd Miles">Floyd Miles</option>
+                <option value="Darlene Robertson">Darlene Robertson</option>
                 <option value="Guy Hawkins">Guy Hawkins</option>
                 <option value="Bessie Cooper">Bessie Cooper</option>
+                <option value="Robert Fox">Robert Fox</option>
+                <option value="Darrell Steward">Darrell Steward</option>
               </select>
             </div>
           </div>
@@ -134,7 +136,7 @@ const TicketModal = () => {
           </button>
         </FORM>
       </div>
-    </TICKETMODEL>
+    </div>
   );
   // );
 };
@@ -156,8 +158,4 @@ const FORM = styled.form`
         rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     }
   }
-`;
-
-const TICKETMODEL = styled.div`
-  border: 1px solid red;
 `;
