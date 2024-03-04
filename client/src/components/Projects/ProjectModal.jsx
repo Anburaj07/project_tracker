@@ -56,7 +56,7 @@ const ProjectModal = () => {
       "en-GB"
     );
     let projectOBj = { ...project, due_date: formattedDate };
-    console.log("projectOBj:", projectOBj);
+    // console.log("projectOBj:", projectOBj);
     if (isEditing) {
       editProject({ id, ...projectOBj });
       alert("Project Updated Successfully!");

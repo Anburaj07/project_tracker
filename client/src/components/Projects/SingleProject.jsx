@@ -14,7 +14,7 @@ const SingleProject = ({
 
   const navigate=useNavigate()
   return (
-    <div className="bg-white  rounded-md p-4 grid gap-y-3" onClick={navigate(`/projects/project/${_id}`)}>
+    <div className="bg-white  rounded-md p-4 grid gap-y-3" onClick={()=>navigate(`/projects/project/${_id}`)}>
       <div className="flex justify-end items-center">
         <p
           className={`mr-4 pl-4 pr-4 p-1 rounded-md ${
@@ -52,7 +52,6 @@ const SingleProject = ({
             {percentage}%
           </h1>
         </div>
-        <p>-------------------------bar-------------------------</p>
       </div>
       <div className="flex justify-end">
         <img src={calender} alt="" className="pr-2" />
