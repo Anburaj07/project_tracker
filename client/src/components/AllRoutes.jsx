@@ -16,7 +16,7 @@ const AllRoutes = () => {
       <Route path="/tickets/add" element={<TicketModal />} />
       <Route path="/projects/add" element={<ProjectModal />} />
       <Route path="/projects/project/:id" element={<ProjectDetails />} />
-      <Route path="/projects/edit/:id" element={<ProjectModal />} />
+      <Route path="/projects/project/edit/:id" element={<ProjectModal />} />
     </Routes>
   );
 };

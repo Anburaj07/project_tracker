@@ -11,6 +11,10 @@ import { useNavigate, useParams } from "react-router-dom";
 const ProjectModal = () => {
   const [isEditing, setIsEditing] = useState(false);
 
+  const currentDate = new Date();
+  const currentFormattedDate = currentDate.toISOString().slice(0, 10);
+  console.log(currentFormattedDate);
+
   const [project, setProject] = useState({
     title: "",
     description: "",
@@ -18,7 +22,7 @@ const ProjectModal = () => {
     status: isEditing ? "Inprogress" : "Nonstarted",
     task: "",
     due_date: "",
-    starting_date: isEditing ? "" : new Date().toLocaleDateString("en-GB"),
+    starting_date: currentFormattedDate,
     about: "",
   });
   const { id } = useParams();
@@ -52,17 +56,12 @@ const ProjectModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formattedDate = new Date(project.due_date).toLocaleDateString(
-      "en-GB"
-    );
-    let projectOBj = { ...project, due_date: formattedDate };
-    // console.log("projectOBj:", projectOBj);
     if (isEditing) {
-      editProject({ id, ...projectOBj });
+      editProject({ id, ...project });
       alert("Project Updated Successfully!");
     } else {
       alert("Project Added Successfully!");
-      addProject(projectOBj);
+      addProject(project);
     }
     setIsEditing(false);
     navigate("/");
