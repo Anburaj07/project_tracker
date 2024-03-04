@@ -1,51 +1,48 @@
 import React from "react";
-import projects from "../images/projects.png";
-import tasks from "../images/tasks.png";
-import tickets from "../images/tickets.png";
+import projectsImg from "../images/projects.png";
+import tasksImg from "../images/tasks.png";
+import ticketsImg from "../images/tickets.png";
 import styled from "styled-components";
-import { useNavigate} from "react-router-dom";
-const Sidebar = ({state}) => {
+import { useLocation, useNavigate } from "react-router-dom";
+
+const Sidebar = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   return (
-    <SIDEBAR className="w-[10%] border-r border-gray-400  overflow-y-auto sticky top-0">
-      <div
-        className={`flex p-5 ${state === "Projects" ? "bg-[#E7F3FF]" : ""} `}
+    <StyledSidebar className="w-[10%] border-r border-gray-400 overflow-y-auto sticky top-0">
+      <SidebarItem
         onClick={() => navigate("/")}
-      >
-        <img src={projects} alt="" />
-        <h2
-          className={`text-lg ${state === "Projects" ? "text-[#5030E5]" : ""}`}
-        >
-          Projects
-        </h2>
-      </div>
-      <div
-        className={`flex p-5 ${state === "Tasks" ? "bg-[#E7F3FF]" : ""} `}
+        isActive={pathname === "/"}
+        icon={projectsImg}
+        label="Projects"
+      />
+      <SidebarItem
         onClick={() => navigate("/tasks")}
-      >
-        <img src={tasks} alt="" />
-        <h2 className={`text-lg ${state === "Tasks" ? "text-[#5030E5]" : ""}`}>
-          Tasks
-        </h2>
-      </div>
-      <div
-        className={`flex p-5 ${state === "Tickets" ? "bg-[#E7F3FF]" : ""} `}
+        isActive={pathname === "/tasks"}
+        icon={tasksImg}
+        label="Tasks"
+      />
+      <SidebarItem
         onClick={() => navigate("/tickets")}
-      >
-        <img src={tickets} alt="" />
-        <h2
-          className={`text-lg ${state === "Tickets" ? "text-[#5030E5]" : ""}`}
-        >
-          Tickets
-        </h2>
-      </div>
-    </SIDEBAR>
+        isActive={pathname === "/tickets"}
+        icon={ticketsImg}
+        label="Tickets"
+      />
+    </StyledSidebar>
   );
 };
 
-export default Sidebar;
+const SidebarItem = ({ onClick, isActive, icon, label }) => {
+  return (
+    <div className={`flex p-5 ${isActive ? "bg-[#E7F3FF]" : ""}`} onClick={onClick}>
+      <img src={icon} alt={label} />
+      <h2 className={`text-lg ${isActive ? "text-[#5030E5]" : ""}`}>{label}</h2>
+    </div>
+  );
+};
 
-const SIDEBAR = styled.div`
+const StyledSidebar = styled.div`
   div:hover {
     cursor: pointer;
   }
@@ -53,3 +50,6 @@ const SIDEBAR = styled.div`
     padding-right: 12px;
   }
 `;
+
+export default Sidebar;
+
