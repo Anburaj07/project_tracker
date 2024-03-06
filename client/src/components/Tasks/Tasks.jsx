@@ -4,6 +4,7 @@ import TaskFilters from "./TaskFilters";
 import TasksTable from "./TasksTable";
 import { useGetTasksQuery } from "../../redux/slices/taskApi";
 import AddTaskModal from "./AddTaskModal";
+import Pagination from "../Pagination";
 
 const Tasks = () => {
   const { data: taskList, isLoading, isSuccess } = useGetTasksQuery();
@@ -18,6 +19,24 @@ const Tasks = () => {
     setIsModalOpen(false);
   };
 
+  
+  //fields for paginations
+  const [entriesPerPage, setEntriesPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  //Loader
+  if (isLoading) {
+    return <h1>Loading...</h1>; // or any other loading indicator
+  }
+
+  // Calculate index of the first and last entries to display on the current page
+  const indexOfLastEntry = currentPage * entriesPerPage;
+  const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
+  const currentEntries = taskList.slice(indexOfFirstEntry, indexOfLastEntry);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
   return (
     <TASKS className="pl-4 pr-6 min-h-lvh">
       <div className="flex justify-between p-1">
@@ -29,11 +48,19 @@ const Tasks = () => {
           + Add Task
         </button>
       </div>
-      {isLoading && <h1>Loading...</h1>}
       {isSuccess && !isModalOpen && (
         <>
-          <TaskFilters />
-          <TasksTable data={taskList} />
+          <TaskFilters
+            entriesPerPage={entriesPerPage}
+            setEntriesPerPage={setEntriesPerPage}
+          />
+          <TasksTable data={currentEntries} />
+          <Pagination
+            entriesPerPage={entriesPerPage}
+            totalEntries={taskList.length}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
         </>
       )}
       <AddTaskModal isOpen={isModalOpen} onClose={handleCloseModal} />
