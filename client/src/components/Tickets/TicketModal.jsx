@@ -61,7 +61,7 @@ const TicketModal = () => {
   };
   const { subject, assigned, requirements, description } = ticket;
   return (
-    <div className="modal m-auto  w-[90%] bg-[#f5f5f5] ">
+    <div className="modal m-auto mb-4 w-[90%] bg-[#f5f5f5] ">
       <div className="modal-content text-[#474f5e] mt-6 shadow-md w-[50%] p-4 m-auto bg-[#ffffff] rounded-md">
         <div className="flex justify-end w-[90%] pt-2">
           <h2 className="text-2xl font-semibold text-[#5030E5] mr-16 mb-2">
@@ -80,14 +80,14 @@ const TicketModal = () => {
             <div className="w-[50%]">
               <h1 className="text-lg">Subject</h1>
               <select name="subject" value={subject} onChange={handleChange}>
-                <option value="">Select</option>
+                <option value="">Select </option>
                 <option value="Lorem ipsum dolor sit">
                   Lorem ipsum dolor sit
                 </option>
-                <option value="Lorem ipsum dolor sit">
+                <option value="Lorem ipsum sit dolor ">
                   Lorem ipsum dolor sit
                 </option>
-                <option value="Lorem ipsum dolor sit">
+                <option value="Lorem dolor ipsum sit">
                   Lorem ipsum dolor sit
                 </option>
               </select>
@@ -115,6 +115,7 @@ const TicketModal = () => {
               rows="4"
               value={requirements}
               onChange={handleChange}
+              placeholder="Enter Requirements of Ticket"
             ></textarea>
           </div>
           <div>
@@ -126,6 +127,7 @@ const TicketModal = () => {
               rows="4"
               value={description}
               onChange={handleChange}
+              placeholder="Enter Description of Ticket"
             ></textarea>
           </div>
           <button

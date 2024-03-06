@@ -30,11 +30,16 @@ const AddTaskModal = ({ isOpen, onClose }) => {
   };
   return (
     isOpen && (
-      <div className="modal mt-8">
+      <div className="modal mt-8 mb-24">
         <div className="modal-content text-[#474f5e] shadow-md w-[40%] p-4 m-auto bg-[#ffffff] rounded-md">
           <div className="flex justify-between w-[90%] mb-4">
             <h2 className="text-2xl font-semibold text-[#5030E5]">Add Task</h2>
-            <img src={cancel} className="cursor-pointer text-2xl font-medium" alt="Cancel" onClick={onClose} />
+            <img
+              src={cancel}
+              className="cursor-pointer text-2xl font-medium"
+              alt="Cancel"
+              onClick={onClose}
+            />
           </div>
           <FORM onSubmit={handleSubmit} className="flex flex-col">
             {/* Form fields */}
@@ -44,7 +49,7 @@ const AddTaskModal = ({ isOpen, onClose }) => {
                 type="text"
                 value={taskName}
                 onChange={(e) => setTaskName(e.target.value)}
-                placeholder="Task Name"
+                placeholder="Enter Task Name"
               />
             </div>
             <div>
@@ -53,7 +58,7 @@ const AddTaskModal = ({ isOpen, onClose }) => {
                 type="text"
                 value={leadName}
                 onChange={(e) => setLeadName(e.target.value)}
-                placeholder="Lead Name"
+                placeholder="Enter Lead Name"
               />
             </div>
             <div className="flex justify-end w-[90%]">

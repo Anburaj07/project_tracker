@@ -19,14 +19,17 @@ const Tasks = () => {
     setIsModalOpen(false);
   };
 
-  
   //fields for paginations
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   //Loader
   if (isLoading) {
-    return <h1>Loading...</h1>; // or any other loading indicator
+    return (
+      <div className="flex justify-center items-center m-auto h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    );
   }
 
   // Calculate index of the first and last entries to display on the current page
@@ -38,7 +41,7 @@ const Tasks = () => {
     setCurrentPage(page);
   };
   return (
-    <TASKS className="pl-4 pr-6 min-h-lvh">
+    <TASKS className="pl-4 pr-6 mb-2">
       <div className="flex justify-between p-1">
         <h1 className="text-2xl font-semibold">Tasks</h1>
         <button

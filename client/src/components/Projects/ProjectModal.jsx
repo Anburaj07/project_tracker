@@ -21,7 +21,7 @@ const ProjectModal = () => {
     about: "",
   });
   const { id } = useParams();
-  const { data} = useGetProjectByIdQuery(id);
+  const { data } = useGetProjectByIdQuery(id);
   const [editProject] = useEditProjectMutation();
   const navigate = useNavigate();
 
@@ -48,7 +48,9 @@ const ProjectModal = () => {
     e.preventDefault();
     const mutation = isEditing ? editProject : addProject;
     mutation({ id, ...project });
-    const successMessage = isEditing ? "Project updated successfully!" : "Project added successfully!";
+    const successMessage = isEditing
+      ? "Project updated successfully!"
+      : "Project added successfully!";
     alert(successMessage);
     setIsEditing(false);
     navigate("/");
@@ -80,6 +82,7 @@ const ProjectModal = () => {
                 value={title}
                 name={"title"}
                 onChange={handleChange}
+                placeholder="Enter Project Title"
               />
             </div>
             <div className="w-[50%]">
@@ -89,6 +92,7 @@ const ProjectModal = () => {
                 value={description}
                 name={"description"}
                 onChange={handleChange}
+                placeholder="Enter Project Description"
               />
             </div>
           </div>
@@ -100,6 +104,7 @@ const ProjectModal = () => {
                 value={task}
                 name={"task"}
                 onChange={handleChange}
+                placeholder="Enter No.of Tasks"
               />
             </div>
             <div className="w-[50%]">
@@ -121,6 +126,7 @@ const ProjectModal = () => {
               rows="4"
               value={about}
               onChange={handleChange}
+              placeholder="Enter Project Details"
             ></textarea>
           </div>
           <button
