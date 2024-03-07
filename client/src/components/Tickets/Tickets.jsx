@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TicketFilters from "./TicketFilters";
 import TicketsTable from "./TicketsTable";
@@ -7,12 +7,31 @@ import { useNavigate } from "react-router-dom";
 import Pagination from "../Pagination";
 
 const Tickets = () => {
-  const { data: ticketList, isLoading, isSuccess } = useGetTicketsQuery();
+  // Search query state
   const navigate = useNavigate();
+
+  const [searchKey, setSearchKey] = useState("");
+  const [debouncedSearchKey, setDebouncedSearchKey] = useState("");
+
+  const {
+    data: ticketList,
+    isLoading,
+    isSuccess,
+  } = useGetTicketsQuery({ searchQuery: debouncedSearchKey });
 
   //fields for paginations
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchKey(searchKey);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchKey]);
 
   //Loader
   if (isLoading) {
@@ -32,6 +51,10 @@ const Tickets = () => {
     setCurrentPage(page);
   };
 
+  const handleChange = (e) => {
+    setSearchKey(e.target.value);
+  };
+
   return (
     <TICKETS className="pl-4 pr-6">
       <div className="flex justify-between p-1">
@@ -48,6 +71,8 @@ const Tickets = () => {
           <TicketFilters
             entriesPerPage={entriesPerPage}
             setEntriesPerPage={setEntriesPerPage}
+            searchKey={searchKey}
+            setSearchQuery={handleChange}
           />
           <TicketsTable data={currentEntries} />
           <Pagination

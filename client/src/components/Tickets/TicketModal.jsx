@@ -85,10 +85,10 @@ const TicketModal = () => {
                   Lorem ipsum dolor sit
                 </option>
                 <option value="Lorem ipsum sit dolor ">
-                  Lorem ipsum dolor sit
+                  Lorem ipsum sit dolor 
                 </option>
                 <option value="Lorem dolor ipsum sit">
-                  Lorem ipsum dolor sit
+                  Lorem ipsum dolor ipsum sit
                 </option>
               </select>
             </div>

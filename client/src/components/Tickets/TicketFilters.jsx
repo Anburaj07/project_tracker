@@ -1,7 +1,8 @@
-import React from "react";
+// import React, { useState } from "react";
 import search from "../../images/search.png";
 
-const TicketFilters = ({ entriesPerPage, setEntriesPerPage }) => {
+const TicketFilters = ({ entriesPerPage,searchKey,setSearchQuery, setEntriesPerPage }) => {
+
   return (
     <div className="flex justify-between items-center mt-4 ">
       <div className="flex gap-3 ">
@@ -20,9 +21,19 @@ const TicketFilters = ({ entriesPerPage, setEntriesPerPage }) => {
       </div>
       <div className="flex items-center bg-[#ffff] rounded-md p-2">
         <div>
-          <img src={search} alt="" className="w-[90%]" />
+          <img
+            src={search}
+            alt=""
+            className="w-[90%]"
+          />
         </div>
-        <input type="text" placeholder="Search Tickets" className="pl-2 " />
+        <input
+          type="text"
+          placeholder="Search Tickets"
+          className="pl-2 "
+          value={searchKey}
+          onChange={setSearchQuery}
+        />
       </div>
     </div>
   );

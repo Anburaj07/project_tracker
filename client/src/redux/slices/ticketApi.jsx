@@ -4,11 +4,17 @@ export const ticketApi = createApi({
   reducerPath: "ticketApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://project-tracker-tpm7.onrender.com/tickets",
+    // baseUrl: "http://localhost:8080/tickets",
   }),
   tagTypes: ["tickets"],
   endpoints: (builder) => ({
     getTickets: builder.query({
-      query: () => "/",
+      query: ({ searchQuery }) => {
+        return {
+          url: `/?search=${searchQuery}`,
+          method: "GET",
+        };
+      },
       providesTags: ["tickets"],
     }),
     getTicketById: builder.query({
@@ -46,5 +52,5 @@ export const {
   useGetTicketByIdQuery,
   useAddTicketMutation,
   useEditTicketMutation,
-  useDeleteTicketMutation
+  useDeleteTicketMutation,
 } = ticketApi;
