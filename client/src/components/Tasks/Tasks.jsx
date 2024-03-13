@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TaskFilters from "./TaskFilters";
 import TasksTable from "./TasksTable";
@@ -7,8 +7,6 @@ import AddTaskModal from "./AddTaskModal";
 import Pagination from "../Pagination";
 
 const Tasks = () => {
-  const { data: taskList, isLoading, isSuccess } = useGetTasksQuery();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -19,9 +17,29 @@ const Tasks = () => {
     setIsModalOpen(false);
   };
 
+  //search
+  const [searchKey, setSearchKey] = useState("");
+  const [debouncedSearchKey, setDebouncedSearchKey] = useState("");
+
+  const {
+    data: taskList,
+    isLoading,
+    isSuccess,
+  } = useGetTasksQuery({ searchQuery: debouncedSearchKey });
+
   //fields for paginations
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchKey(searchKey);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchKey]);
 
   //Loader
   if (isLoading) {
@@ -40,6 +58,11 @@ const Tasks = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  const handleChange = (e) => {
+    setSearchKey(e.target.value);
+  };
+
   return (
     <TASKS className="pl-4 pr-6 mb-2">
       <div className="flex justify-between p-1">
@@ -56,6 +79,8 @@ const Tasks = () => {
           <TaskFilters
             entriesPerPage={entriesPerPage}
             setEntriesPerPage={setEntriesPerPage}
+            searchKey={searchKey}
+            setSearchQuery={handleChange}
           />
           <TasksTable data={currentEntries} />
           <Pagination

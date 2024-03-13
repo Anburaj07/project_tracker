@@ -1,7 +1,12 @@
 import React from "react";
 import search from "../../images/search.png";
 
-const TaskFilters = ({ entriesPerPage, setEntriesPerPage }) => {
+const TaskFilters = ({
+  entriesPerPage,
+  setEntriesPerPage,
+  searchKey,
+  setSearchQuery,
+}) => {
   return (
     <div className="flex justify-between items-center mt-4">
       <div className="flex gap-3 ">
@@ -22,7 +27,13 @@ const TaskFilters = ({ entriesPerPage, setEntriesPerPage }) => {
         <div>
           <img src={search} alt="" className="w-[90%]" />
         </div>
-        <input type="text" placeholder="Search Task" className="pl-2 " />
+        <input
+          type="text"
+          placeholder="Search Tasks"
+          className="pl-2 "
+          value={searchKey}
+          onChange={setSearchQuery}
+        />
       </div>
     </div>
   );

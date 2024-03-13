@@ -4,7 +4,6 @@ export const ticketApi = createApi({
   reducerPath: "ticketApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://project-tracker-tpm7.onrender.com/tickets",
-    // baseUrl: "http://localhost:8080/tickets",
   }),
   tagTypes: ["tickets"],
   endpoints: (builder) => ({
