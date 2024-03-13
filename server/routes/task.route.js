@@ -3,7 +3,8 @@ const { TaskModel } = require("../models/task.model");
 const taskRouter = express.Router();
 
 taskRouter.get("/", async (req, res) => {
-  const query = req.query;
+  const { search } = req.query;
+  const query = search ? { task_name: { $regex: search, $options: "i" } } : {};
   try {
     const tasks = await TaskModel.find(query);
     res.status(200).json(tasks);
