@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 import ProjectStates from "./ProjectStates";
 import StatusHeader from "./StatusHeader";
@@ -7,7 +7,15 @@ import { useGetProjectsQuery } from "../../redux/slices/projectApi";
 import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
-  const { data: projectList, isLoading, isSuccess } = useGetProjectsQuery();
+  //search
+  const [searchKey, setSearchKey] = useState("");
+  const [debouncedSearchKey, setDebouncedSearchKey] = useState("");
+
+  const {
+    data: projectList,
+    isLoading,
+    isSuccess,
+  } = useGetProjectsQuery({ searchQuery: debouncedSearchKey });
   const [status, setStatus] = useState("All");
   const navigate = useNavigate();
 
@@ -15,6 +23,16 @@ const Projects = () => {
   let Finished = [];
   let Unfinished = [];
   let Nonstarted = [];
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchKey(searchKey);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchKey]);
 
   //Loader
   if (isLoading) {
@@ -35,7 +53,11 @@ const Projects = () => {
   const handleChange = (value) => {
     setStatus(value);
   };
-  
+
+  const handleSearchChange = (e) => {
+    setSearchKey(e.target.value);
+  };
+
   let data =
     status === "All"
       ? projectList
@@ -66,7 +88,12 @@ const Projects = () => {
             Unfinished={Unfinished.length}
             Nonstarted={Nonstarted.length}
           />
-          <StatusHeader status={status} handleChange={handleChange} />
+          <StatusHeader
+            status={status}
+            handleChange={handleChange}
+            searchKey={searchKey}
+            setSearchQuery={handleSearchChange}
+          />
           <ProjectList data={data} />
         </>
       )}

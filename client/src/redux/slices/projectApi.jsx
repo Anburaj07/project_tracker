@@ -4,12 +4,16 @@ export const projectApi = createApi({
   reducerPath: "projectApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://project-tracker-tpm7.onrender.com/projects",
-    // https://project-tracker-tpm7.onrender.com/
   }),
   tagTypes: ["projects"],
   endpoints: (builder) => ({
     getProjects: builder.query({
-      query: () => "/",
+      query: ({ searchQuery }) => {
+        return {
+          url: `/?search=${searchQuery}`,
+          method: "GET",
+        };
+      },
       providesTags: ["projects"],
     }),
     getProjectById: builder.query({

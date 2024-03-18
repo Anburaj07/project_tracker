@@ -3,7 +3,8 @@ const projectRouter = express.Router();
 const { ProjectModel } = require("../models/project.model");
 
 projectRouter.get("/", async (req, res) => {
-  const query = req.query;
+  const { search } = req.query;
+  const query = search ? { title: { $regex: search, $options: "i" } } : {};
   try {
     const projects = await ProjectModel.find(query);
     res.status(200).json(projects);

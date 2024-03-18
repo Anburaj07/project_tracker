@@ -3,7 +3,7 @@ import search from "../../images/search.png";
 import filter from "../../images/filter.png";
 import styled from "styled-components";
 
-const StatusHeader = ({ status, handleChange }) => {
+const StatusHeader = ({ status, handleChange, searchKey, setSearchQuery }) => {
   return (
     <div className="flex justify-between mt-8 w-[97%] m-auto">
       <div
@@ -43,9 +43,15 @@ const StatusHeader = ({ status, handleChange }) => {
       </div>
       <div className="flex items-center bg-[#ffff] rounded-md p-2">
         <div>
-          <img src={search} alt="" className="w-[100%]" />
+          <img src={search} alt="" className="w-[90%]" />
         </div>
-        <input type="text" placeholder="Search Projects" className="pl-2" />
+        <input
+          type="text"
+          placeholder="Search Projects"
+          className="pl-2"
+          value={searchKey}
+          onChange={setSearchQuery}
+        />
       </div>
       <div className="bg-[#ffff] rounded-md p-2 flex items-center">
         <img src={filter} alt="" />
