@@ -12,7 +12,7 @@ const ProjectDetails = () => {
   const { id } = useParams();
   const { data, isSuccess, isLoading } = useGetProjectByIdQuery(id);
   return (
-    <PROJECTDETAILS className="pl-4 w-[90%] pt-6 pr-6 min-h-lvh">
+    <PROJECTDETAILS className="pl-4 w-[90%] pt-6 pr-6 h-[84vh]">
       <div className="flex justify-between pl-2 pr-2 p-1">
         <div className="flex items-center">
           <img

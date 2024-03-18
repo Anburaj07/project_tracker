@@ -16,8 +16,7 @@ const SingleProject = ({
   const getStatusStyle = () => {
     if (percentage === 0) return "text-[#787486] bg-[#D0CFD5]";
     if (percentage === 100) return "text-[#069845] bg-[#CDEADA]";
-    if (percentage < 50 && percentage > 0)
-      return "text-[#FF0000] bg-[#FFA6A6]";
+    if (percentage < 50 && percentage > 0) return "text-[#FF0000] bg-[#FFA6A6]";
     return "text-[#FF9900] bg-[#FFEBCC]";
   };
 
@@ -26,6 +25,12 @@ const SingleProject = ({
     if (percentage === 100) return "text-[#069845]";
     if (percentage < 50 && percentage > 0) return "text-[#FF0000]";
     return "text-[#FF9900]";
+  };
+
+  const getPercentageBarStyle = () => {
+    if (percentage === 100) return "bg-[#069845]";
+    if (percentage < 50 && percentage > 0) return "bg-[#FF0000]";
+    return "bg-[#FF9900]";
   };
 
   return (
@@ -51,6 +56,12 @@ const SingleProject = ({
           </h1>
         </div>
       </div>
+      <div className="w-full h-4 bg-gray-200 rounded-md">
+        <div
+          className={`h-full rounded-md ${getPercentageBarStyle()}`}
+          style={{ width: `${percentage}%` }}
+        ></div>
+      </div>
       <div className="flex justify-end">
         <img src={calender} alt="" className="pr-2" />
         <p className="text-[#787486]">{due_date}</p>
@@ -60,4 +71,3 @@ const SingleProject = ({
 };
 
 export default SingleProject;
-

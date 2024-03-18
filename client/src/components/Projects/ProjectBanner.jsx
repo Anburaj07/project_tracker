@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../images/logo.png";
+
 const ProjectBanner = ({
   title,
   description,
@@ -9,6 +10,19 @@ const ProjectBanner = ({
   task,
   status,
 }) => {
+  const getTextColorClass = () => {
+    if (percentage === 0) return "text-[#6d6d6d]";
+    if (percentage === 100) return "text-[#069845]";
+    if (percentage < 50 && percentage > 0) return "text-[#FF0000]";
+    return "text-[#FF9900]";
+  };
+
+  const getPercentageBarStyle = () => {
+    if (percentage === 100) return "bg-[#069845]";
+    if (percentage < 50 && percentage > 0) return "bg-[#FF0000]";
+    return "bg-[#FF9900]";
+  };
+
   return (
     <div className="bg-white rounded-md p-4 mt-4">
       <div className="flex items-center text-left">
@@ -18,54 +32,26 @@ const ProjectBanner = ({
           <p>{description}</p>
         </div>
       </div>
-      <div className="flex justify-between mt-3 w-[80%]">
-        <div>
-          <p>Progress</p>
-          <p
-            className={`font-semibold ${
-              percentage === 0
-                ? "text-[#6d6d6d]"
-                : percentage === 100
-                ? "text-[#069845]"
-                : percentage < 50 && percentage > 0
-                ? "text-[#FF0000]"
-                : "text-[#FF9900]"
-            }`}
-          >
-            {percentage}%
-          </p>
+      <div className="flex justify-between mt-3 w-full  p-4">
+        <div className="w-[40%]">
+          <div className="flex justify-between font-semibold">
+            <p>Progress</p>
+            <p className={getTextColorClass()}>{percentage}%</p>
+          </div>
+          <div className="w-full h-4 bg-gray-200 rounded-md mt-4">
+            <div
+              className={`h-full rounded-md ${getPercentageBarStyle()}`}
+              style={{ width: `${percentage}%` }}
+            ></div>
+          </div>
         </div>
         <div>
           <p>Status</p>
-          <p
-            className={`font-semibold ${
-              percentage === 0
-                ? "text-[#6d6d6d]"
-                : percentage === 100
-                ? "text-[#069845]"
-                : percentage < 50 && percentage > 0
-                ? "text-[#FF0000]"
-                : "text-[#FF9900]"
-            }`}
-          >
-            {status}
-          </p>
+          <p className={getTextColorClass()}>{status}</p>
         </div>
         <div>
           <p>Task</p>
-          <p
-            className={`font-semibold ${
-              percentage === 0
-                ? "text-[#6d6d6d]"
-                : percentage === 100
-                ? "text-[#069845]"
-                : percentage < 50 && percentage > 0
-                ? "text-[#FF0000]"
-                : "text-[#FF9900]"
-            }`}
-          >
-            {task}
-          </p>
+          <p className={getTextColorClass()}>{task}</p>
         </div>
         <div>
           <p>Due date</p>
